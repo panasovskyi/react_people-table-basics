@@ -21,7 +21,20 @@ export const PeopleProvider: React.FC<Props> = ({ children }) => {
     setIsLoading(true);
 
     getPeople()
-      .then(setPeople)
+      .then(peopleFromServer => {
+        const updatedPeople = peopleFromServer.map(person => {
+          const mother = peopleFromServer.find(
+            p => p.name === person.motherName,
+          );
+          const father = peopleFromServer.find(
+            p => p.name === person.fatherName,
+          );
+
+          return { ...person, mother, father };
+        });
+
+        setPeople(updatedPeople);
+      })
       .catch(() => setErrorMessage('Something went wrong'))
       .finally(() => setIsLoading(false));
   }, []);

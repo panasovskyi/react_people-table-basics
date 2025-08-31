@@ -4,7 +4,9 @@ import { Link, matchPath, useLocation } from 'react-router-dom';
 export const Navbar = () => {
   const { pathname } = useLocation();
 
-  const isTabActive = matchPath({ path: '/people', end: true }, pathname);
+  const isTabActive =
+    matchPath({ path: '/people/:slug', end: true }, pathname) ||
+    matchPath({ path: '/people', end: true }, pathname);
 
   return (
     <nav
