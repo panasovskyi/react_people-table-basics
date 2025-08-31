@@ -50,8 +50,8 @@ export const PeopleTable: React.FC<Props> = ({ people }) => {
                 )}
               </td>
               <td>
-                {person.mother ? (
-                  <PersonLink person={person.mother} />
+                {person.father ? (
+                  <PersonLink person={person.father} />
                 ) : (
                   person.fatherName || '-'
                 )}
